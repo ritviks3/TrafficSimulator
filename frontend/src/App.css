@@ -1,0 +1,152 @@
+html {
+  background-image: url("Images/cityskyline.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button[type=submit] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.parent {
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+.child-stats {
+  background-color: white;
+  border: 1px solid;
+  position: relative;
+  width: 20%;
+  left: 1;
+  padding: 1rem 1rem;
+}
+
+.child-board {
+  position: absolute;
+  width: 50%;
+  top:0;
+  display: inline-block;
+  padding: 1rem 1rem;
+  z-index: 1;
+}
+
+.board {
+  display: inline-block;
+  background-color: black;
+  width: 40vw;
+  height: 40vw;
+}
+
+.piece {
+  display: inline-grid;
+  width: 3.8vw;
+  height: 3.8vw;
+  background-image: url("Images/tracks/roadPLAZA.png");
+  background-size: contain;
+  border: 0.01em solid black;
+  align-content: center;
+  justify-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.piece.roadEW {
+  color: white;
+  background-image: url("Images/tracks/roadEW.png");
+}
+
+.piece.roadNS {
+  color: white;
+  background-image: url("Images/tracks/roadNS.png");
+}
+
+.piece.roadNE {
+  color: white;
+  background-image: url("Images/tracks/roadNE.png");
+}
+
+.piece.roadNW {
+  color: white;
+  background-image: url("Images/tracks/roadNW.png");
+}
+
+.piece.roadSE {
+  color: white;
+  background-image: url("Images/tracks/roadSE.png");
+}
+
+.piece.roadSW {
+  color: white;
+  background-image: url("Images/tracks/roadSW.png");
+}
+
+.vehicle {
+  width: 50%;
+  position: fixed;
+  top:0;
+  display: inline-block;
+  padding: 1rem 1rem;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+

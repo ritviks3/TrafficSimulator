@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dummy Visualization</title>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="https://use.typekit.net/pbz7ozm.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="./app.js"></script>
+</head>
+
+<body>
+    <img width="600" height="600" style="position:absolute; top:70px; left:750px;" src="Images/circle_track.jpg" alt="Circular Track">
+    <form id = "carform">
+        <!-- Only "car" and "truck" vehicles available for now -->
+        <input style="position:absolute; top:10px; left:10px;" type="text" id="sprite" placeholder="Vehicle" autocapitalize="off" />
+        <input style="position:absolute; top:6px; left:230px;" type="submit" id="submitbutton">
+    </form>
+    <form id = "speed">
+        <input style="position:absolute; top:70px; left:10px;" placeholder="Speed" id="vehiclespeed" type="number" min=0 max=5 step=0.1 value/>
+        <input style="position:absolute; top:66px; left:230px;" type="submit" id="submitspeed">
+    </form>
+    <script>
+        let count = 0;
+        let speed = 1;
+
+        function setSprite() {
+            event.preventDefault();
+            let elem = document.getElementById("moving_sprite");
+			if (elem != null) {
+				elem.parentNode.removeChild(elem);
+			}
+            var sprite_name = document.getElementById("sprite").value;
+            let img = document.createElement('img');
+            img.id = "moving_sprite";
+            img.style.position = "absolute";
+            img.width = "160";
+            img.height = "80";
+			img.style.top = "300px";
+			img.style.left = "800px";
+            img.style.transform = "rotate(90deg)";
+            var sprite_name = document.getElementById("sprite").value;
+            img.src = "Images/" + sprite_name + ".png";
+            document.body.appendChild(img);
+
+            const movingSprite = document.getElementById("moving_sprite");
+            let init_x = {value: parseFloat(getComputedStyle(movingSprite).left)};
+            let init_y = {value: parseFloat(getComputedStyle(movingSprite).top)};
+            let rotation = {value: 0};
+            moveObject(movingSprite,count,rotation,init_x,init_y);
+        }
+
+        function changeSpeed() {
+            event.preventDefault();
+            var new_speed = document.getElementById("vehiclespeed").value;
+            speed = parseFloat(new_speed);
+        }
+
+        function moveObject(movingSprite, count,rotation,init_x,init_y) {
+            count += speed;
+            rotation.value = count*Math.PI/180;
+            x = 170-180* Math.cos(rotation.value);
+            y = 20 + 180*Math.sin(rotation.value);
+            movingSprite.style.left = init_x.value + x + 'px';
+            movingSprite.style.top = init_y.value + y + 'px';
+            let new_rotation = 90 - count;
+            movingSprite.style.transform = "rotate(" + new_rotation + "deg)";
+            movingSprite.style.transformOrigin = 'center center';
+            requestAnimationFrame(() => moveObject(movingSprite, count, rotation, init_x, init_y, speed));
+        }
+
+        document.getElementById("carform").addEventListener("submit", setSprite);
+        document.getElementById("speed").addEventListener("submit", changeSpeed);
+    </script>
+</body>
+
+</html>

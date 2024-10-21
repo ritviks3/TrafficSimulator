@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "vehicles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["car", "truck"]
+          },
+          "position": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            },
+            "required": ["x", "y"]
+          },
+          "speed": {
+            "type": "number",
+            "minimum": 0
+          },
+          "acceleration": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": ["id", "type", "position", "speed", "acceleration"]
+      }
+    },
+    "traffic_signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "position": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            },
+            "required": ["x", "y"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["red", "yellow", "green"]
+          },
+          "change_time": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": ["id", "position", "status", "change_time"]
+      }
+    },
+    "road_network": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "position": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" }
+                },
+                "required": ["x", "y"]
+              }
+            },
+            "required": ["id", "position"]
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "start_node": {
+                "type": "string"
+              },
+              "end_node": {
+                "type": "string"
+              },
+              "lanes": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": ["id", "start_node", "end_node", "lanes"]
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "custom",
+            "roundabout",
+            "junction",
+            "four-way",
+            "T-intersection"
+          ]
+        }
+      },
+      "required": ["id", "nodes", "edges", "type"]
+    }
+  },
+  "required": ["vehicles", "traffic_signals", "road_network"]
+}

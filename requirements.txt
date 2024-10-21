@@ -1,0 +1,8 @@
+channels==4.0.0
+Django==4.2.5
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+numpy==1.26.2
+pygame==2.5.2
+axios==1.6.2
+channels==4.0.0
